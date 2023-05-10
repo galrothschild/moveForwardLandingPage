@@ -1,0 +1,60 @@
+@use "mixins" as mixin;
+@use "colors" as color;
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Heebo";
+    color: #fff;
+}
+
+html {
+    height: 100vh;
+    background-image: url("../images/Background.jpg");
+    background-repeat: no-repeat;
+    background-size: 200% auto;
+}
+.container {
+    @include mixin.displayFlex($justify: center);
+}
+
+.content {
+    width: clamp(300px, 80%, 450px);
+    margin: 100px 0;
+    background: color.$formBackground;
+    text-align: center;
+    @include mixin.displayFlex($direction: column, $gap: 16px);
+    padding: 80px 30px;
+}
+form {
+    @include mixin.displayFlex($direction: column, $gap: 16px);
+    .form-control {
+        width: 100%;
+        @include mixin.displayFlex($direction: column);
+        input {
+            border: 1px solid color.$primary;
+            line-height: 2rem;
+        }
+    }
+    text-align: start;
+    align-items: start;
+    button {
+        border: none;
+        padding: 10px 30px;
+        background-color: color.$primary;
+    }
+}
+@media only screen and (min-width: 768px) {
+    html {
+        background-size: 100% auto;
+    }
+    .container {
+        display: block;
+        .content {
+            margin: clamp(10px, 15%, 35vh) clamp(10px, 25%, 400px);
+        }
+    }
+}
